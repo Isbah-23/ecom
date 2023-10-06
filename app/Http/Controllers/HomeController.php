@@ -22,4 +22,28 @@ class HomeController extends Controller
     {
         return view('sidebarlinks/billing');
     }
+    public function virtual_reality()
+    {
+        return view('sidebarlinks/virtual-reality');
+    }
+    public function rtl()
+    {
+        return view('sidebarlinks/rtl');
+    }
+    public function notifications()
+    {
+        return view('sidebarlinks/notifications');
+    }
+    public function profile()
+    {
+        return view('sidebarlinks/profile');
+    }
+    public function sign_in()
+    {
+        return view('registration/sign-in');
+    }
+    public function sign_up()
+    {
+        return view('registration/sign-up');
+    }
 }
