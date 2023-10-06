@@ -38,4 +38,8 @@ Route::get('/test-email', function () {
     });
 
     return 'Test email sent!';
-});    
+});
+
+
+//////To create new roles////
+Route::get('/create-roles',[HomeController::class, 'createRoles'])->name('create-roles');
