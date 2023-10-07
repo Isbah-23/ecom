@@ -6,4 +6,8 @@ use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
+    public function test()
+    {
+        return 'Called Successfully';
+    }
 }

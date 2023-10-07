@@ -39,13 +39,13 @@ class HomeController extends Controller
     {
         return view('sidebarlinks/profile');
     }
-    public function sign_in()
+    public function register(Request $request)
     {
-        return view('registration/sign-in');
+        return view('auth/register',['request'=>$request]);
     }
-    public function sign_up()
+    public function login(Request $request)
     {
-        return view('registration/sign-up');
+        return view('auth/login',['request'=>$request]);
     }
     public function createRoles()
     {

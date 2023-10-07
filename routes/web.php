@@ -2,21 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
-// Route::get('/', function () {
-    // return view('welcome');
-// });
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Auth\CustomRegisterController;
+use App\Http\Controllers\Auth\CustomVerificationController;
+// Use Laravel's built-in email verification routes
+Auth::routes(['verify' => true]);
 /////////////////////////////Home controller routes///////////////////////////////////////
 Route::get('/', [HomeController::class, 'index'])->name('home');//render done
 //dashboard navbar links
@@ -27,9 +17,12 @@ Route::get('/virtual-reality',[HomeController::class, 'virtual_reality'])->name(
 Route::get('/rtl',[HomeController::class, 'rtl'])->name('rtl');
 Route::get('/notifications',[HomeController::class, 'notifications'])->name('notifications');
 Route::get('/profile',[HomeController::class, 'profile'])->name('profile');
-Route::get('/sign-in',[HomeController::class, 'sign_in'])->name('sign-in');
-Route::get('/sign-up',[HomeController::class, 'sign_up'])->name('sign-up');
-
+// Login Routes
+Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('/login', 'Auth\LoginController@login');
+// Registration Routes
+Route::get('/register', [CustomRegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [CustomRegisterController::class, 'register']);
 ////////Verification/Registration and Authentication routes
 Route::get('/test-email', function () {
     \Mail::raw('This is a test email.', function ($message) {
@@ -39,7 +32,6 @@ Route::get('/test-email', function () {
 
     return 'Test email sent!';
 });
-
-
 //////To create new roles////
 Route::get('/create-roles',[HomeController::class, 'createRoles'])->name('create-roles');
+

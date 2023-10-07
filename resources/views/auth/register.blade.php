@@ -29,12 +29,12 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link me-2" href="{{ route('sign-up') }}">
+                    <a class="nav-link me-2" href="{{ route('register') }}">
                       <i class="fas fa-user-circle opacity-6 text-dark me-1"></i> Sign Up
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link me-2" href="{{ route('sign-in') }}">
+                    <a class="nav-link me-2" href="{{ route('login') }}">
                       <i class="fas fa-key opacity-6 text-dark me-1"></i> Sign In
                     </a>
                   </li>
@@ -92,6 +92,13 @@
                         </label>
                       </div>
                       @endif
+                      <div class="mb-3">
+                          <label for="role" class="form-label">Select Role:</label>
+                          <select id="role" class="form-select" name="role" required>
+                              <option value="user">User</option>
+                              <option value="admin">Admin</option>
+                          </select>
+                      </div>
                       <div class="text-center">
                         <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">{{ __('Register') }}</button>
                       </div>
