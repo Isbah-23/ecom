@@ -90,7 +90,7 @@
                 </div>
               </div>
               <div class="card-body">
-                <form method="POST" action="{{ route('password.update') }}">
+                <form method="POST" action="{{ route('login.submit') }}">
                   @csrf
                   <input type="hidden" name="token" value="{{ $request->route('token') }}">
                   <div class="input-group input-group-outline my-3">
@@ -110,7 +110,7 @@
                     <label class="form-check-label mb-0 ms-3" for="rememberMe">Remember me</label>
                   </div>
                   <div class="text-center">
-                    <button type="button" class="btn bg-gradient-primary w-100 my-4 mb-2">Sign in</button>
+                    <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">Sign in</button>
                   </div>
                   <div class="text-center mt-4">
                     <a href=# class="text-primary text-gradient font-weight-bold">{{ __('Reset Password') }}</a>

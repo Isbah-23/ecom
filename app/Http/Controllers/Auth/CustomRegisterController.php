@@ -19,7 +19,7 @@ class CustomRegisterController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['guest', 'verified']);
+        $this->middleware(['guest']);
     }
 
     protected function validator(array $data)
@@ -34,15 +34,22 @@ class CustomRegisterController extends Controller
 
     protected function create(array $data)
     {
+        $roleMapping = [
+            'admin' => 1,
+            'user' => 2, 
+        ];
+
+        $roleValue = $roleMapping[$data['role']] ?? 2; // Default to 'user' if role is not found.
+
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'role' => $data['role'], // Store the selected role.
+            'role' => $roleValue, // Set the role value based on the mapping.
         ]);
 
         // Send the email verification notification
-        $user->notify(new VerifyEmailNotification);
+        //$user->notify(new VerifyEmailNotification);
         
         // Trigger the Registered event
         event(new Registered($user));

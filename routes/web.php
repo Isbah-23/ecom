@@ -1,12 +1,11 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Auth\CustomLoginController;
 use App\Http\Controllers\Auth\CustomRegisterController;
 use App\Http\Controllers\Auth\CustomVerificationController;
 // Use Laravel's built-in email verification routes
-Auth::routes(['verify' => true]);
+//Auth::routes(['verify' => true]);
 /////////////////////////////Home controller routes///////////////////////////////////////
 Route::get('/', [HomeController::class, 'index'])->name('home');//render done
 //dashboard navbar links
@@ -17,12 +16,13 @@ Route::get('/virtual-reality',[HomeController::class, 'virtual_reality'])->name(
 Route::get('/rtl',[HomeController::class, 'rtl'])->name('rtl');
 Route::get('/notifications',[HomeController::class, 'notifications'])->name('notifications');
 Route::get('/profile',[HomeController::class, 'profile'])->name('profile');
-// Login Routes
-Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
-Route::post('/login', 'Auth\LoginController@login');
-// Registration Routes
+// Login/Registration Routes
+Route::get('/login', [CustomLoginController::class, 'login'])->name('login');
+Route::post('/login', [CustomLoginController::class, 'loginSubmit'])->name('login.submit');
+Route::post('/logout', [CustomLoginController::class, 'logout'])->name('logout');
 Route::get('/register', [CustomRegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [CustomRegisterController::class, 'register']);
+
 ////////Verification/Registration and Authentication routes
 Route::get('/test-email', function () {
     \Mail::raw('This is a test email.', function ($message) {
