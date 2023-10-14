@@ -98,7 +98,7 @@
           </ul>
         </li>
         <li class="nav-item d-flex align-items-center">
-          <a href="./pages/sign-in.html" class="nav-link font-weight-bold px-0 text-body">
+          <a href="{{'login'}}" class="nav-link font-weight-bold px-0 text-body">
             <i class="fa fa-user me-sm-1" aria-hidden="true"></i>
             <span class="d-sm-inline d-none">Sign In</span>
           </a>
